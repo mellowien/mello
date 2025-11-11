@@ -1,0 +1,60 @@
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import "tailwindcss";
+
+
+/* Optional: Dein eigenes globales Styling */
+html,
+body {
+  background-color: black;
+  color: white;
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+/* --- Pulsierender, satter Glow --- */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.75;
+    transform: scale(1);
+    background-color: rgba(13, 148, 136, 0.32); /* gleicher Farbton, aber dichter */
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+    background-color: rgba(13, 148, 136, 0.45); /* satteres Zentrum */
+  }
+}
+
+/* --- Vertikaler Licht-Schimmer --- */
+@keyframes lightSweep {
+  0% {
+    background-position: 50% 120%;
+  }
+  50% {
+    background-position: 50% -20%;
+  }
+  100% {
+    background-position: 50% 120%;
+  }
+}
+
+/* --- Mobile Optimierung (weniger Blur & kürzere Animation) --- */
+@media (max-width: 768px) {
+  .mobile-glow {
+    animation: pulseGlow 4s ease-in-out infinite, lightSweep 7s ease-in-out infinite;
+    filter: blur(60px);
+    opacity: 0.7;
+  }
+}
+
+
+
+
