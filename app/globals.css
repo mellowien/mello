@@ -1,9 +1,7 @@
-/* ✅ Tailwind korrekt laden */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ✅ FontAwesome importieren */
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 
 /* ✅ Global Styles */
