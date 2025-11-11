@@ -1,8 +1,12 @@
+/* ✅ Tailwind korrekt laden */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ✅ FontAwesome importieren */
 @import "@fortawesome/fontawesome-free/css/all.min.css";
-@import "tailwindcss";
 
-
-/* Optional: Dein eigenes globales Styling */
+/* ✅ Global Styles */
 html,
 body {
   background-color: black;
@@ -19,21 +23,22 @@ a {
 button {
   cursor: pointer;
 }
-/* --- Pulsierender, satter Glow --- */
+
+/* ✅ Pulsierender Glow */
 @keyframes pulseGlow {
   0%, 100% {
     opacity: 0.75;
     transform: scale(1);
-    background-color: rgba(13, 148, 136, 0.32); /* gleicher Farbton, aber dichter */
+    background-color: rgba(13, 148, 136, 0.32);
   }
   50% {
     opacity: 1;
     transform: scale(1.08);
-    background-color: rgba(13, 148, 136, 0.45); /* satteres Zentrum */
+    background-color: rgba(13, 148, 136, 0.45);
   }
 }
 
-/* --- Vertikaler Licht-Schimmer --- */
+/* ✅ Licht-Schimmer */
 @keyframes lightSweep {
   0% {
     background-position: 50% 120%;
@@ -46,7 +51,7 @@ button {
   }
 }
 
-/* --- Mobile Optimierung (weniger Blur & kürzere Animation) --- */
+/* ✅ Mobile Optimierung */
 @media (max-width: 768px) {
   .mobile-glow {
     animation: pulseGlow 4s ease-in-out infinite, lightSweep 7s ease-in-out infinite;
@@ -54,7 +59,3 @@ button {
     opacity: 0.7;
   }
 }
-
-
-
-
