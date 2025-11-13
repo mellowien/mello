@@ -21,9 +21,16 @@ export default function Header() {
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur-md border-b border-[#0d9488]/30"
+      className="
+        fixed top-0 left-0 w-full z-50 
+        bg-black/80 
+        backdrop-blur-lg 
+        border-b border-[#0d9488]/40  
+        shadow-[0_0_25px_rgba(13,148,136,0.25)]
+      "
     >
       <div className="mx-auto flex items-center justify-between px-6 py-3 max-w-6xl">
+        
         {/* Logo → Home */}
         <Link href="/" className="flex items-center">
           <Image
@@ -53,7 +60,13 @@ export default function Header() {
           {/* Mello TV Button */}
           <Link
             href="/tv"
-            className="ml-4 inline-block bg-[#0d9488] text-black font-semibold rounded-full px-4 py-1.5 text-sm transition-all duration-300 hover:scale-105 hover:bg-[#0b7d71] hover:shadow-[0_0_15px_3px_rgba(13,148,136,0.6)]"
+            className="
+              ml-4 inline-block bg-[#0d9488] text-black font-semibold 
+              rounded-full px-4 py-1.5 text-sm 
+              transition-all duration-300 hover:scale-105 
+              hover:bg-[#0b7d71] 
+              hover:shadow-[0_0_15px_3px_rgba(13,148,136,0.6)]
+            "
           >
             Mello TV
           </Link>
@@ -87,11 +100,17 @@ export default function Header() {
             </Link>
           ))}
 
-          {/* Mello TV Mobile Button */}
+          {/* Mello TV Mobile */}
           <Link
             href="/tv"
             onClick={() => setMenuOpen(false)}
-            className="mt-2 inline-block bg-[#0d9488] text-black font-semibold rounded-full px-6 py-2 transition-all duration-300 hover:scale-105 hover:bg-[#0b7d71] hover:shadow-[0_0_15px_3px_rgba(13,148,136,0.6)]"
+            className="
+              mt-2 inline-block bg-[#0d9488] text-black font-semibold 
+              rounded-full px-6 py-2 
+              transition-all duration-300 hover:scale-105 
+              hover:bg-[#0b7d71] 
+              hover:shadow-[0_0_15px_3px_rgba(13,148,136,0.6)]
+            "
           >
             Mello TV
           </Link>
