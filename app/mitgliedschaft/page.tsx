@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 
-export default function Mitgliedschaft() {
+function MitgliedschaftContent() {
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -74,7 +74,6 @@ export default function Mitgliedschaft() {
       transition={{ duration: 0.8 }}
       className="flex flex-col items-center justify-start min-h-screen bg-black text-white px-6 pt-6 pb-16"
     >
-      {/* Überschrift */}
       <motion.h1
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -94,7 +93,6 @@ export default function Mitgliedschaft() {
         Menschen, die gemeinsam etwas Neues aufbauen wollen.
       </motion.p>
 
-      {/* Mitgliedschaftsoptionen */}
       {!showForm && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -102,11 +100,8 @@ export default function Mitgliedschaft() {
           transition={{ delay: 0.6 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full"
         >
-          {/* Spieler */}
           <div className="bg-black/70 border border-[#0d9488]/30 rounded-2xl p-6 text-center shadow-[0_0_20px_rgba(13,148,136,0.2)] hover:shadow-[0_0_25px_rgba(13,148,136,0.4)] transition-all duration-300">
-            <h2 className="text-2xl font-semibold text-[#0d9488] mb-2">
-              Spieler
-            </h2>
+            <h2 className="text-2xl font-semibold text-[#0d9488] mb-2">Spieler</h2>
             <p className="text-gray-400 mb-4">
               Ob erfahren oder Anfänger – beim <strong>FC Mello Wien</strong> ist
               jeder willkommen, der motiviert ist, Teil des Teams zu werden.
@@ -119,11 +114,8 @@ export default function Mitgliedschaft() {
             </a>
           </div>
 
-          {/* Supporter */}
           <div className="bg-black/70 border border-[#0d9488]/30 rounded-2xl p-6 text-center shadow-[0_0_20px_rgba(13,148,136,0.2)] hover:shadow-[0_0_25px_rgba(13,148,136,0.4)] transition-all duration-300">
-            <h2 className="text-2xl font-semibold text-[#0d9488] mb-2">
-              Supporter
-            </h2>
+            <h2 className="text-2xl font-semibold text-[#0d9488] mb-2">Supporter</h2>
             <p className="text-gray-400 mb-4">
               Du willst dich einbringen? Erzähl uns, wie du Mello unterstützen
               möchtest – ob Organisation, Events oder neue Ideen.
@@ -140,11 +132,8 @@ export default function Mitgliedschaft() {
             </a>
           </div>
 
-          {/* Sponsoren */}
           <div className="bg-black/70 border border-[#0d9488]/30 rounded-2xl p-6 text-center shadow-[0_0_20px_rgba(13,148,136,0.2)] hover:shadow-[0_0_25px_rgba(13,148,136,0.4)] transition-all duration-300">
-            <h2 className="text-2xl font-semibold text-[#0d9488] mb-2">
-              Sponsoren
-            </h2>
+            <h2 className="text-2xl font-semibold text-[#0d9488] mb-2">Sponsoren</h2>
             <p className="text-gray-400 mb-4">
               Der <strong>FC Mello Wien</strong> freut sich über Partner, die unsere
               Vision teilen und den Verein langfristig begleiten möchten.
@@ -159,7 +148,6 @@ export default function Mitgliedschaft() {
         </motion.div>
       )}
 
-      {/* Mitglied werden */}
       {!showForm && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -177,7 +165,6 @@ export default function Mitgliedschaft() {
           >
             Jetzt Mitglied werden
           </button>
-
           <p className="text-gray-500 mt-6 text-sm">
             Der <strong>FC Mello Wien</strong> ist ein eingetragener{" "}
             <strong>gemeinnütziger</strong> Verein, der jeden Cent in den Vereinszweck
@@ -186,7 +173,6 @@ export default function Mitgliedschaft() {
         </motion.div>
       )}
 
-      {/* Formular */}
       {showForm && (
         <motion.form
           onSubmit={handleSubmit}
@@ -196,9 +182,7 @@ export default function Mitgliedschaft() {
           className="mt-10 bg-black/70 border border-[#0d9488]/30 rounded-2xl p-6 w-full max-w-md shadow-[0_0_20px_rgba(13,148,136,0.2)]"
         >
           <div className="mb-5">
-            <label htmlFor="name" className="block text-gray-300 mb-2">
-              Name
-            </label>
+            <label htmlFor="name" className="block text-gray-300 mb-2">Name</label>
             <input
               type="text"
               id="name"
@@ -211,9 +195,7 @@ export default function Mitgliedschaft() {
           </div>
 
           <div className="mb-5">
-            <label htmlFor="email" className="block text-gray-300 mb-2">
-              E-Mail
-            </label>
+            <label htmlFor="email" className="block text-gray-300 mb-2">E-Mail</label>
             <input
               type="email"
               id="email"
@@ -258,7 +240,6 @@ export default function Mitgliedschaft() {
         </motion.form>
       )}
 
-      {/* ✅ Erfolgspopup */}
       {showPopup && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -270,5 +251,13 @@ export default function Mitgliedschaft() {
         </motion.div>
       )}
     </motion.main>
+  );
+}
+
+export default function MitgliedschaftPage() {
+  return (
+    <Suspense fallback={<div className="text-center pt-20">Lade...</div>}>
+      <MitgliedschaftContent />
+    </Suspense>
   );
 }
